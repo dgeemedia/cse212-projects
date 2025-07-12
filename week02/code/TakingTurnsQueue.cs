@@ -37,19 +37,28 @@ public class TakingTurnsQueue
         {
             throw new InvalidOperationException("No one in the queue.");
         }
-        else
+
+        // Remove person from the front
+        Person person = _people.Dequeue();
+
+        // Clone the person to return original turns (as required by the test)
+        var returnPerson = new Person(person.Name, person.Turns);
+
+        if (person.Turns <= 0)
         {
-            Person person = _people.Dequeue();
-            if (person.Turns > 1)
-            {
-                person.Turns -= 1;
-                _people.Enqueue(person);
-            }
-
-            return person;
+            // Infinite turns, add back without modifying
+            _people.Enqueue(person);
         }
-    }
+        else if (person.Turns > 1)
+        {
+            // Consume one turn and re-add
+            person.Turns -= 1;
+            _people.Enqueue(person);
+        }
+        // Else if person.Turns == 1, do not re-add (turns exhausted)
 
+        return returnPerson;
+    }
     public override string ToString()
     {
         return _people.ToString();
