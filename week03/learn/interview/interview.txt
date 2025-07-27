@@ -1,0 +1,61 @@
+Question 1: Intersection of Two Sets
+
+🔧 Approach:
+To find the intersection of two sets, 
+I’ll iterate through the smaller set and 
+check if each item exists in the larger set. 
+If it does, I’ll add it to a result set.
+
+*Step-by-step:
+
+Accept two sets as input (e.g., HashSet<int> set1, HashSet<int> set2).
+
+Create a new empty result set.
+
+Loop through the smaller set to minimize time.
+
+For each item, use .Contains() to check if the other set has it.
+
+If yes, add it to the result set.
+
+*Big O Performance:
+
+Time complexity: O(n + m) where n and m are sizes of the two sets.
+
+This is because .Contains() in a HashSet is O(1), and we loop through each element once.
+
+*Test cases:*
+
+set1 = {1, 2, 3}, set2 = {2, 3, 4} → result: {2, 3}
+
+set1 = {} and set2 = {1, 2} → result: {}
+
+set1 = {1, 2, 3}, set2 = {4, 5, 6} → result: {}
+
+
+Question 2: Union of Two Sets
+
+Approach:
+To find the union, I’ll add all elements from both sets into a result set.
+
+*Step-by-step:
+
+Accept two sets as input.
+
+Create a new result set.
+
+Add all elements from set1 to the result.
+
+Loop through set2, and for each item not already in the result, add it.
+
+📊 Big O Performance:
+
+Time complexity: O(n + m) because we're visiting each item in both sets once.
+
+🧪 Test cases:
+
+set1 = {1, 2}, set2 = {2, 3} → result: {1, 2, 3}
+
+set1 = {}, set2 = {1} → result: {1}
+
+set1 = {5}, set2 = {5} → result: {5}
